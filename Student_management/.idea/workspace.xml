@@ -6,20 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="11b55c3a-6023-4b62-a2c1-34ac86fcde33" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/../../.." afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/danhsach.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/danhsachmonhoc.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/danhsachsinhvien.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/file/CsvRead.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/file/CsvWriter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/management/PointManagement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/management/StudentManagement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/MonHoc.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/PointCaculate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/ManagementView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/file/CsvWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/file/CsvWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/MonHoc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/MonHoc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/PointCaculate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/PointCaculate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,8 +21,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -113,7 +105,7 @@
       <workItem from="1704706297656" duration="3000" />
       <workItem from="1704706411841" duration="1684000" />
       <workItem from="1704770017643" duration="477000" />
-      <workItem from="1704776125436" duration="11072000" />
+      <workItem from="1704776125436" duration="15516000" />
     </task>
     <servers />
   </component>

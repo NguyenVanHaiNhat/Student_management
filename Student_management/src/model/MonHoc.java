@@ -1,6 +1,6 @@
 package model;
 
-public abstract class MonHoc extends Student implements PointCaculate {
+public class MonHoc extends Student implements PointCaculate {
     private String tenMonHoc;
     private String maMonHoc;
     private double diemChuyenCan;
@@ -80,6 +80,11 @@ public abstract class MonHoc extends Student implements PointCaculate {
 
     @Override
     public double getDiemTong() {
+        return (diemChuyenCan + diemBaiTap + diemGiuaKi*2 + diemCuoiKi*3);
+    }
+
+    @Override
+    public double getDiemTrungBinh() {
         return (diemChuyenCan + diemBaiTap + diemGiuaKi*2 + diemCuoiKi*3) / 7;
     }
 }

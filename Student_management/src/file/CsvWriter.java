@@ -1,65 +1,95 @@
-//package management;
-//
-//import model.Student;
-//
-//import java.io.FileWriter;
-//import java.io.IOException;
-//import java.util.ArrayList;
-//import java.util.List;
-//
-//public class CsvWriter {
-//    private static final String COMMA_DELIMITER = ", ";
-//    private static final String NEW_LINE_SEPARATOR = "\n";
-//
-//    private static final String FILE_HEADER = "id,code,name";
-//
-//    public static void main(String[] args) {
-//
-//        String fileName = "E:\\Bootcamp Java Fullstack\\C1023H1-JV101-NguyenVanHaiNhat\\Module_2\\Case_study\\Student_management\\src\\data\\danhsachtaikhoan.csv";
-//        writeCsvFile(fileName);
-//    }
-//
-//    public static void writeCsvFile(String fileName) {
-//        Student student1 = new Student(1, "Nam", "Nguyễn Văn Hải Nhật");
-//        Student student2 = new Student(2, "Nữ", "Nguyễn Thị Cẩm Nhung");
-//        Student student3 = new Student(3, "Nam", "Lương Văn Đạt");
-//
-//        List<Student> students = new ArrayList<>();
-//        students.add(student1);
-//        students.add(student2);
-//        students.add(student3);
-//
-//        FileWriter fileWriter = null;
-//
-//        try {
-//            fileWriter = new FileWriter(fileName);
-//
-//            fileWriter.append(FILE_HEADER);
-//
-//            fileWriter.append(NEW_LINE_SEPARATOR);
-//
-//            for (Student student : students) {
-//                fileWriter.append(String.valueOf(student.getId()));
-//                fileWriter.append(COMMA_DELIMITER);
-//                fileWriter.append(student.getCode());
-//                fileWriter.append(COMMA_DELIMITER);
-//                fileWriter.append(student.getName());
-//                fileWriter.append(NEW_LINE_SEPARATOR);
-//            }
-//
-//            System.out.println("Done");
-//
-//        } catch (Exception e) {
-//            System.out.println(e.getMessage());
-//            e.printStackTrace();
-//        } finally {
-//            try {
-//                fileWriter.flush();
-//                fileWriter.close();
-//            } catch (IOException e) {
-//                System.out.println(e.getMessage());
-//                e.printStackTrace();
-//            }
-//        }
-//    }
-//}
+package file;
+
+import model.MonHoc;
+import model.Student;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class CsvWriter {
+    private static final String FILE_STUDENT_PATH = "E:\\Bootcamp Java Fullstack\\C1023H1-JV101-NguyenVanHaiNhat\\Module_2\\Case_study\\Student_management\\src\\data\\danhsachsinhvien.csv";
+    private static final String FILE_SUBJECT_PATH = "E:\\Bootcamp Java Fullstack\\C1023H1-JV101-NguyenVanHaiNhat\\Module_2\\Case_study\\Student_management\\src\\data\\danhsachmonhoc.csv";
+    public List<Student> readStudent(){
+        List<Student> students = new ArrayList<>();
+        List<String> strings = readFromFile(FILE_STUDENT_PATH);
+
+        String[] temp;
+        for (String s: strings){
+            temp = s.split(",");
+            String studentCode = temp[0];
+            String firstName = temp[1];
+            String lastName = temp[2];
+            String gender = temp[3];
+            String dayOfBirth = temp[4];
+            String phone = temp[5];
+
+            Student student = new Student(studentCode, firstName, lastName, gender, dayOfBirth, phone);
+            students.add(student);
+        }
+        return students;
+    }
+
+    public List<MonHoc> readSubject(){
+        List<MonHoc> subjects = new ArrayList<>();
+        List<String> strings = readFromFile(FILE_SUBJECT_PATH);
+
+        String[] temp;
+        for (String s: strings){
+            temp = s.split(",");
+            String nameSubject = temp[0];
+            String codeSubject = temp[1];
+            double diemChuyenCan = Double.parseDouble(temp[2]);
+            double diemBaiTap = Double.parseDouble(temp[3]);
+            double diemGiuaKi = Double.parseDouble(temp[4]);
+            double diemCuoiKi = Double.parseDouble(temp[5]);
+
+            MonHoc subject = new MonHoc(nameSubject, codeSubject, diemChuyenCan, diemBaiTap, diemGiuaKi, diemCuoiKi);
+            subjects.add(subject);
+        }
+        return subjects;
+    }
+
+    public void writeStudent(List<Student> students){
+        List<String> strings = new ArrayList<>();
+
+        for (Student student: students){
+            strings.add(String.valueOf(student));
+            System.out.println();
+        }
+    }
+    private void writeToFile(String pathFile, List<String> strings) {
+        try {
+            FileWriter fileWriter = new FileWriter(pathFile);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            for (String s : strings) {
+                bufferedWriter.write(s);
+                bufferedWriter.newLine();
+            }
+            bufferedWriter.close();
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private static List<String> readFromFile(String pathFile) {
+        List<String> strings = new ArrayList<>();
+        try {
+            FileReader fileReader = new FileReader(pathFile);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            String line;
+            while (true) {
+                line = bufferedReader.readLine();
+                if (line == null) {
+                    break;
+                }
+                strings.add(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return strings;
+    }
+}
