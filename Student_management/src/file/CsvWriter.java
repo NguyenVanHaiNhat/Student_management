@@ -2,6 +2,7 @@ package file;
 
 import model.MonHoc;
 import model.Student;
+import model.Subject;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -57,7 +58,19 @@ public class CsvWriter {
             strings.add(String.valueOf(student));
             System.out.println();
         }
+        writeToFile(FILE_STUDENT_PATH, strings);
     }
+
+    public void writeSubject(List<Subject> subjects){
+        List<String> strings = new ArrayList<>();
+
+        for (Subject subject: subjects){
+            strings.add(String.valueOf(subject));
+            System.out.println();
+        }
+        writeToFile(FILE_SUBJECT_PATH, strings);
+    }
+
     private void writeToFile(String pathFile, List<String> strings) {
         try {
             FileWriter fileWriter = new FileWriter(pathFile);
