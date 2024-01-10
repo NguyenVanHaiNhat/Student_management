@@ -123,10 +123,10 @@ public class ManagementView {
                     displaySubjectList();
                     break;
                 case 3:
-                    findStudentById();
+                    findStudentById(students);
                     break;
                 case 4:
-                    findSubjectById();
+                    findSubjectById(subjects);
                     break;
                 case 5:
                     showMainMenu();
@@ -138,10 +138,36 @@ public class ManagementView {
         }
     }
 
-    private static void findSubjectById() {
+    private static void findSubjectById(List<Subject> subjects) {
+        System.out.println("Enter subject code to find:");
+        String codeSubject = scanner.nextLine().trim();
+        int index = -1;
+        for (int i = 0; i < subjects.size(); i++) {
+            if (subjects.get(i).getCodeSubject().equals(codeSubject)){
+                index = i;
+                break;
+            }
+        }
+        if (index != -1){
+            System.out.println("Thông tin được tìm thấy: ");
+            System.out.println(subjects.get(index));
+        }
     }
 
-    private static void findStudentById() {
+    private static void findStudentById(List<Student> students) {
+        System.out.println("Enter student code to find:");
+        String codeStudent = scanner.nextLine().trim();
+        int index = -1;
+        for (int i = 0; i < students.size(); i++) {
+            if (students.get(i).getStudentCode().equals(codeStudent)) {
+                index = i;
+                break;
+            }
+        }
+        if (index != -1) {
+            System.out.println("Thông tin được tìm thấy: ");
+            System.out.println(students.get(index));
+        }
     }
 
     public static void addSubject(){
