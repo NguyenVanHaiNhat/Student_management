@@ -1,5 +1,6 @@
 package view;
 
+import file.CsvWriterAndRead;
 import file.RegexHandler;
 import management.AdminManagement;
 import model.Student;
@@ -12,6 +13,7 @@ import java.util.Scanner;
 
 public class ManagementView {
     private static final AdminManagement adminManagement = new AdminManagement();
+    private static final CsvWriterAndRead csv = new CsvWriterAndRead();
     private static final Scanner scanner = new Scanner(System.in);
 
     public void renderView() {
@@ -47,15 +49,16 @@ public class ManagementView {
             List<Subject> subjects = adminManagement.getSubjects();
             System.out.println("Admin Management");
             System.out.println("1. add new student");
-            System.out.println("2. add new subject has 2 credit");
-            System.out.println("3. add new subject has 3 credit");
-            System.out.println("4. display student");
-            System.out.println("5. display subject");
-            System.out.println("6. edit student");
-            System.out.println("7. edit subject point");
-            System.out.println("8. delete student");
-            System.out.println("9. delete point");
-            System.out.println("10. Back Main Menu");
+            System.out.println("2. add new subject");
+            System.out.println("3. display student");
+            System.out.println("4. display subject");
+            System.out.println("5. edit student");
+            System.out.println("6. edit subject point");
+            System.out.println("7. delete student");
+            System.out.println("8. delete point");
+            System.out.println("9. write to file");
+            System.out.println("10. read to file");
+            System.out.println("11. Back Main Menu");
             System.out.print("your choice: ");
             int choice = scanner.nextByte();
 
@@ -65,33 +68,32 @@ public class ManagementView {
                     addNewStudent();
                     break;
                 case 2:
-                    addNewSubjectHasTwoCredits();
+                    addSubject();
                     break;
                 case 3:
-                    addNewSubjectHasThreeCredits();
-                    break;
-                case 4:
                     displayStudentList();
                     break;
-                case 5:
+                case 4:
                     displaySubjectList();
                     break;
-                case 6:
+                case 5:
                     editStudentById(students);
                     break;
-                case 7:
+                case 6:
                     editPoint(subjects);
                     break;
-                case 8:
+                case 7:
                     System.out.println("Enter studentCode want to delete: ");
                     String codeStudent = RegexHandler.checkRegexStudentCode();
                     adminManagement.deleteStudentByCode(codeStudent);
                     break;
-                case 9:
+                case 8:
                     System.out.println("Enter subjectCode wain to delete: ");
                     String codeSubject = RegexHandler.checkRegexSubjectCode();
                     adminManagement.deleteStudentByCode(codeSubject);
                     break;
+                case 9:
+                    csv.writeStudent(students);
                 case 10:
                     showMainMenu();
                     break;
@@ -142,7 +144,7 @@ public class ManagementView {
     private static void findStudentById() {
     }
 
-    public static void addNewSubjectHasTwoCredits(){
+    public static void addSubject(){
         System.out.println("Enter name subject: ");
         String nameSubject = RegexHandler.checkRegexName();
         System.out.println("Enter code subject: ");
@@ -153,41 +155,41 @@ public class ManagementView {
         String dayStart = RegexHandler.checkRegexDate();
         System.out.println("Enter day end: ");
         String dayEnd = RegexHandler.checkRegexDate();
-        System.out.println("Enter exercise points: ");
-        double exercisePoints = Double.parseDouble(RegexHandler.checkNumOfCredits());
-        System.out.println("Enter midterm Score: ");
-        double midtermScore = Double.parseDouble(RegexHandler.checkNumOfCredits());
-        System.out.println("Enter final Grade: ");
-        double finalGrade = Double.parseDouble(RegexHandler.checkNumOfCredits());
-        SubjectHasTwoCredits subject = new SubjectHasTwoCredits(nameSubject, codeSubject, numOfCredits, dayStart, dayEnd, exercisePoints, midtermScore, finalGrade);
-        adminManagement.addSubject(subject);
-        System.out.println("Done add");
+
+        System.out.println("1. Subject has two credits");
+        System.out.println("2. Subject has three credits");
+        int choice = scanner.nextByte();
+        switch (choice){
+            case 1:
+                System.out.println("Enter exercise points: ");
+                double exercisePoints = Double.parseDouble(RegexHandler.checkNumOfCredits());
+                System.out.println("Enter midterm Score: ");
+                double midtermScore = Double.parseDouble(RegexHandler.checkNumOfCredits());
+                System.out.println("Enter final Grade: ");
+                double finalGrade = Double.parseDouble(RegexHandler.checkNumOfCredits());
+                SubjectHasTwoCredits subject2 = new SubjectHasTwoCredits(nameSubject, codeSubject, numOfCredits, dayStart, dayEnd, exercisePoints, midtermScore, finalGrade);
+                adminManagement.addSubject(subject2);
+                System.out.println("Done add");
+                break;
+            case 2:
+                System.out.println("Enter exercise points: ");
+                double exercisePoints3 = Double.parseDouble(RegexHandler.checkNumOfCredits());
+                System.out.println("Enter test Mark: ");
+                double testMarks = Double.parseDouble(RegexHandler.checkNumOfCredits());
+                System.out.println("Enter midterm Score: ");
+                double midtermScore3 = Double.parseDouble(RegexHandler.checkNumOfCredits());
+                System.out.println("Enter final Grade: ");
+                double finalGrade3 = Double.parseDouble(RegexHandler.checkNumOfCredits());
+                System.out.println("Enter practice Point: ");
+                double practicePoint = Double.parseDouble(RegexHandler.checkNumOfCredits());
+                SubjectHasThreeCredits subject3 = new SubjectHasThreeCredits(nameSubject, codeSubject, numOfCredits, dayStart, dayEnd, exercisePoints3, testMarks, midtermScore3, finalGrade3, practicePoint);
+                adminManagement.addSubject(subject3);
+                System.out.println("Done add");
+                break;
+        }
+
     }
-    public static void addNewSubjectHasThreeCredits(){
-        System.out.println("Enter name subject: ");
-        String nameSubject = RegexHandler.checkRegexName();
-        System.out.println("Enter code subject: ");
-        String codeSubject = RegexHandler.checkRegexSubjectCode();
-        System.out.println("Enter number of credits: ");
-        String numOfCredits = RegexHandler.checkNumOfCredits();
-        System.out.println("Enter day start: ");
-        String dayStart = RegexHandler.checkRegexDate();
-        System.out.println("Enter day end: ");
-        String dayEnd = RegexHandler.checkRegexDate();
-        System.out.println("Enter exercise points: ");
-        double exercisePoints = Double.parseDouble(RegexHandler.checkNumOfCredits());
-        System.out.println("Enter test Mark: ");
-        double testMarks = Double.parseDouble(RegexHandler.checkNumOfCredits());
-        System.out.println("Enter midterm Score: ");
-        double midtermScore = Double.parseDouble(RegexHandler.checkNumOfCredits());
-        System.out.println("Enter final Grade: ");
-        double finalGrade = Double.parseDouble(RegexHandler.checkNumOfCredits());
-        System.out.println("Enter practice Point: ");
-        double practicePoint = Double.parseDouble(RegexHandler.checkNumOfCredits());
-        SubjectHasThreeCredits subject = new SubjectHasThreeCredits(nameSubject, codeSubject, numOfCredits, dayStart, dayEnd, exercisePoints, testMarks, midtermScore, finalGrade, practicePoint);
-        adminManagement.addSubject(subject);
-        System.out.println("Done add");
-    }
+
     public static void addNewStudent(){
         System.out.println("Enter student code: ");
         String code = RegexHandler.checkRegexStudentCode();
