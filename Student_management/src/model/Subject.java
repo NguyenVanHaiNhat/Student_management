@@ -1,6 +1,5 @@
 package model;
 
-import java.time.LocalDate;
 
 public class Subject extends Student {
     private String nameSubject;
