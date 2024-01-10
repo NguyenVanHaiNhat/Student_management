@@ -68,6 +68,9 @@ public class Student {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+    public String covertToLine(){
+        return this.studentCode + ", " + this.firstName + ", " + this.lastName + ", " + this.gender + ", " + this.dayOfBirth + ", " + this.phone;
+    }
 
     @Override
     public String toString() {

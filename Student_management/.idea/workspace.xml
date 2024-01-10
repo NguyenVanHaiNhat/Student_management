@@ -6,14 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="11b55c3a-6023-4b62-a2c1-34ac86fcde33" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/../../.." afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/file/RegexHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/Subject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/SubjectHasThreeCredits.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/SubjectHasTwoCredits.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/file/CsvWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/file/CsvWriter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/management/PointManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/AdminManagement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/ManagementView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ManagementView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/file/CsvRead.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/file/CsvWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/file/CsvWriterAndRead.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Subject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Subject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/SubjectHasThreeCredits.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/SubjectHasThreeCredits.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/SubjectHasTwoCredits.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/SubjectHasTwoCredits.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +123,7 @@
       <workItem from="1704770017643" duration="477000" />
       <workItem from="1704776125436" duration="15516000" />
       <workItem from="1704795165459" duration="355000" />
-      <workItem from="1704848106909" duration="6483000" />
+      <workItem from="1704848106909" duration="7885000" />
     </task>
     <servers />
   </component>

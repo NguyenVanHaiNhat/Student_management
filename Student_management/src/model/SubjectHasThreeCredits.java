@@ -9,7 +9,7 @@ public class SubjectHasThreeCredits extends Subject implements PointCaculate {
     private double finalGrade;
     private double practicePoint;
 
-    public SubjectHasThreeCredits(String nameSubject, String codeSubject, String numberOfCredits, LocalDate dayStart, LocalDate dayEnd, double exercisePoints, double testMarks, double midtermScore, double finalGrade, double practicePoint) {
+    public SubjectHasThreeCredits(String nameSubject, String codeSubject, String numberOfCredits, String dayStart, String dayEnd, double exercisePoints, double testMarks, double midtermScore, double finalGrade, double practicePoint) {
         super(nameSubject, codeSubject, numberOfCredits, dayStart, dayEnd);
         this.exercisePoints = exercisePoints;
         this.testMarks = testMarks;
@@ -66,5 +66,9 @@ public class SubjectHasThreeCredits extends Subject implements PointCaculate {
     @Override
     public double getDiemTrungBinh() {
         return (exercisePoints + testMarks + midtermScore * 2 + finalGrade * 3 + practicePoint) / 8 ;
+    }
+
+    public String covertToLine2() {
+        return super.getNameSubject() + ", " + super.getCodeSubject() + ", " + super.getNumberOfCredits() + ", " + super.getDayStart() + ", " + super.getDayEnd() + ", " + this.exercisePoints + ", " + this.testMarks + ", " + this.midtermScore + ", " + this.finalGrade + ", " + this.practicePoint;
     }
 }

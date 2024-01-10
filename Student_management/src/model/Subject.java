@@ -6,10 +6,10 @@ public class Subject extends Student {
     private String nameSubject;
     private String codeSubject;
     private String numberOfCredits;
-    private LocalDate dayStart;
-    private LocalDate dayEnd;
+    private String dayStart;
+    private String dayEnd;
 
-    public Subject(String nameSubject, String codeSubject, String numberOfCredits, LocalDate dayStart, LocalDate dayEnd) {
+    public Subject(String nameSubject, String codeSubject, String numberOfCredits, String dayStart, String dayEnd) {
         this.nameSubject = nameSubject;
         this.codeSubject = codeSubject;
         this.numberOfCredits = numberOfCredits;
@@ -17,7 +17,7 @@ public class Subject extends Student {
         this.dayEnd = dayEnd;
     }
 
-    public Subject(String studentCode, String firstName, String lastName, String gender, String dayOfBirth, String phone, String nameSubject, String codeSubject, String numberOfCredits, LocalDate dayStart, LocalDate dayEnd) {
+    public Subject(String studentCode, String firstName, String lastName, String gender, String dayOfBirth, String phone, String nameSubject, String codeSubject, String numberOfCredits, String dayStart, String dayEnd) {
         super(studentCode, firstName, lastName, gender, dayOfBirth, phone);
         this.nameSubject = nameSubject;
         this.codeSubject = codeSubject;
@@ -50,19 +50,19 @@ public class Subject extends Student {
         this.numberOfCredits = numberOfCredits;
     }
 
-    public LocalDate getDayStart() {
+    public String getDayStart() {
         return dayStart;
     }
 
-    public void setDayStart(LocalDate dayStart) {
+    public void setDayStart(String dayStart) {
         this.dayStart = dayStart;
     }
 
-    public LocalDate getDayEnd() {
+    public String getDayEnd() {
         return dayEnd;
     }
 
-    public void setDayEnd(LocalDate dayEnd) {
+    public void setDayEnd(String dayEnd) {
         this.dayEnd = dayEnd;
     }
 }
