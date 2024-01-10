@@ -1,7 +1,5 @@
 package model;
 
-import java.time.LocalDate;
-
 public class SubjectHasThreeCredits extends Subject implements PointCaculate {
     private double exercisePoints;
     private double testMarks;

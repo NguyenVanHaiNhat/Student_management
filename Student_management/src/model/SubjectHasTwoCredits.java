@@ -1,6 +1,5 @@
 package model;
 
-import java.time.LocalDate;
 
 public class SubjectHasTwoCredits extends Subject implements PointCaculate {
     private double exercisePoints;
