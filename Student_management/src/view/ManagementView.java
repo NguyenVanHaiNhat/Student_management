@@ -7,11 +7,141 @@ import model.Subject;
 import model.SubjectHasThreeCredits;
 import model.SubjectHasTwoCredits;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class ManagementView {
+    private static final AdminManagement adminManagement = new AdminManagement();
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public void renderView() {
+        showMainMenu();
+    }
+    private static void showMainMenu() {
+        while (true) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("1. Student Management\n" +
+                    "2. Admin Management\n" +
+                    "0. Exit\n");
+            System.out.print("Your choice: ");
+            int choice = scanner.nextByte();
+            switch (choice) {
+                case 1:
+                    showMenuStudent();
+                    break;
+                case 2:
+                    showMenuAdmin();
+                    break;
+                case 0:
+                    System.exit(0);
+                default:
+                    System.out.println("Choice again");
+                    break;
+            }
+        }
+    }
+
+    private static void showMenuAdmin() {
+        while (true) {
+            List<Student> students = adminManagement.getStudents();
+            List<Subject> subjects = adminManagement.getSubjects();
+            System.out.println("Admin Management");
+            System.out.println("1. add new student");
+            System.out.println("2. add new subject has 2 credit");
+            System.out.println("3. add new subject has 3 credit");
+            System.out.println("4. display student");
+            System.out.println("5. display subject");
+            System.out.println("6. edit student");
+            System.out.println("7. edit subject point");
+            System.out.println("8. delete student");
+            System.out.println("9. delete point");
+            System.out.println("10. Back Main Menu");
+            System.out.print("your choice: ");
+            int choice = scanner.nextByte();
+
+            scanner.nextLine();
+            switch (choice){
+                case 1:
+                    addNewStudent();
+                    break;
+                case 2:
+                    addNewSubjectHasTwoCredits();
+                    break;
+                case 3:
+                    addNewSubjectHasThreeCredits();
+                    break;
+                case 4:
+                    displayStudentList();
+                    break;
+                case 5:
+                    displaySubjectList();
+                    break;
+                case 6:
+                    editStudentById(students);
+                    break;
+                case 7:
+                    editPoint(subjects);
+                    break;
+                case 8:
+                    System.out.println("Enter studentCode want to delete: ");
+                    String codeStudent = RegexHandler.checkRegexStudentCode();
+                    adminManagement.deleteStudentByCode(codeStudent);
+                    break;
+                case 9:
+                    System.out.println("Enter subjectCode wain to delete: ");
+                    String codeSubject = RegexHandler.checkRegexSubjectCode();
+                    adminManagement.deleteStudentByCode(codeSubject);
+                    break;
+                case 10:
+                    showMainMenu();
+                    break;
+                default:
+                    System.out.println("choice again: ");
+                    break;
+            }
+        }
+    }
+
+    private static void showMenuStudent() {
+        while (true){
+            List<Student> students = adminManagement.getStudents();
+            List<Subject> subjects = adminManagement.getSubjects();
+            System.out.println("Student Menu");
+            System.out.println("1. display student list");
+            System.out.println("2. display subject list");
+            System.out.println("3. find student");
+            System.out.println("4. find subject");
+            System.out.println("5. Back Main Menu");
+            int choice = scanner.nextByte();
+            switch (choice){
+                case 1:
+                    displayStudentList();
+                    break;
+                case 2:
+                    displaySubjectList();
+                    break;
+                case 3:
+                    findStudentById();
+                    break;
+                case 4:
+                    findSubjectById();
+                    break;
+                case 5:
+                    showMainMenu();
+                    break;
+                default:
+                    System.out.println("choice again: ");
+                    break;
+            }
+        }
+    }
+
+    private static void findSubjectById() {
+    }
+
+    private static void findStudentById() {
+    }
+
     public static void addNewSubjectHasTwoCredits(){
         System.out.println("Enter name subject: ");
         String nameSubject = RegexHandler.checkRegexName();
@@ -30,13 +160,8 @@ public class ManagementView {
         System.out.println("Enter final Grade: ");
         double finalGrade = Double.parseDouble(RegexHandler.checkNumOfCredits());
         SubjectHasTwoCredits subject = new SubjectHasTwoCredits(nameSubject, codeSubject, numOfCredits, dayStart, dayEnd, exercisePoints, midtermScore, finalGrade);
-        AdminManagement adminManagement = new AdminManagement();
         adminManagement.addSubject(subject);
-        System.out.println("List of subject:");
-        for (Student s : adminManagement.getSubjects()) {
-            System.out.println(s.toString());
-        }
-
+        System.out.println("Done add");
     }
     public static void addNewSubjectHasThreeCredits(){
         System.out.println("Enter name subject: ");
@@ -60,16 +185,10 @@ public class ManagementView {
         System.out.println("Enter practice Point: ");
         double practicePoint = Double.parseDouble(RegexHandler.checkNumOfCredits());
         SubjectHasThreeCredits subject = new SubjectHasThreeCredits(nameSubject, codeSubject, numOfCredits, dayStart, dayEnd, exercisePoints, testMarks, midtermScore, finalGrade, practicePoint);
-        AdminManagement adminManagement = new AdminManagement();
         adminManagement.addSubject(subject);
-        System.out.println("List of subject:");
-        for (Student s : adminManagement.getSubjects()) {
-            System.out.println(s.toString());
-        }
-
+        System.out.println("Done add");
     }
     public static void addNewStudent(){
-        Scanner input = new Scanner(System.in);
         System.out.println("Enter student code: ");
         String code = RegexHandler.checkRegexStudentCode();
         System.out.println("Enter first name: ");
@@ -83,15 +202,13 @@ public class ManagementView {
         System.out.println("Enter phone");
         String phone = RegexHandler.checkPhoneNumber();
         Student student = new Student(code, firstName, lastName, gender, dayOfBirth, phone);
-        AdminManagement adminManagement = new AdminManagement();
         adminManagement.addStudent(student);
-        System.out.println("List of students:");
-        for (Student s : adminManagement.getStudents()) {
-            System.out.println(s.toString());
-        }
+        System.out.println("Done add");
     }
 
-    public static void editStudentById(List<Student> students, String studentCodeToEdit, Scanner scanner) {
+    public static void editStudentById(List<Student> students) {
+        System.out.println("Enter student code to edit:");
+        String studentCodeToEdit = scanner.nextLine().trim();
         int indexOfStudentToEdit = -1;
         for (int i = 0; i < students.size(); i++) {
             if (students.get(i).getStudentCode().equals(studentCodeToEdit)) {
@@ -110,7 +227,6 @@ public class ManagementView {
             System.out.println("3. Giới tính");
             System.out.println("4. Ngày sinh");
             System.out.println("5. sdt");
-            System.out.println("6. Menu");
 
             System.out.print("Nhập lựa chọn của bạn: ");
             int userChoice = scanner.nextInt();
@@ -142,8 +258,6 @@ public class ManagementView {
                     String newPhone = RegexHandler.checkPhoneNumber();
                     students.get(indexOfStudentToEdit).setPhone(newPhone);
                     break;
-                case 6:
-
                 default:
                     System.out.println("Lựa chọn không hợp lệ.");
                     break;
@@ -155,7 +269,9 @@ public class ManagementView {
             System.out.println("Không tìm thấy sinh viên có ID: " + studentCodeToEdit);
         }
     }
-    public static void editPoint(List<Subject> subjects, String codeSubject, Scanner scanner){
+    public static void editPoint(List<Subject> subjects){
+        System.out.println("Enter subject code to edit:");
+        String codeSubject = scanner.nextLine().trim();
         int indexOfPointToEdit = -1;
         for (int i = 0; i < subjects.size(); i++) {
             if (subjects.get(i).getCodeSubject().equals(codeSubject)) {
@@ -173,7 +289,6 @@ public class ManagementView {
             System.out.println("3. Điểm giữa kì");
             System.out.println("4. Điểm cuối kì");
             System.out.println("5. Điểm thực hành");
-            System.out.println("6. Menu");
 
             System.out.print("Nhập lựa chọn của bạn: ");
             int userChoice = scanner.nextInt();
@@ -205,8 +320,6 @@ public class ManagementView {
                     String newPhone = RegexHandler.checkPhoneNumber();
                     subjects.get(indexOfPointToEdit).setPhone(newPhone);
                     break;
-                case 6:
-
                 default:
                     System.out.println("Lựa chọn không hợp lệ.");
                     break;
@@ -218,6 +331,20 @@ public class ManagementView {
             System.out.println("Không tìm thấy sinh viên có ID: " + codeSubject);
         }
     }
+    public static void displayStudentList() {
+        List<Student> students = adminManagement.getStudents();
+        System.out.println("List of Students:");
+        for (Student student : students) {
+            System.out.println(student);
+        }
     }
+    public static void displaySubjectList(){
+        List<Subject> subjects = adminManagement.getSubjects();
+        System.out.println("List of Subject:");
+        for (Subject subject: subjects){
+            System.out.println(subject);
+        }
+    }
+}
 
 

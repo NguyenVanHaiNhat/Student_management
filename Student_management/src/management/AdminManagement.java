@@ -6,17 +6,12 @@ import model.Subject;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 
 public class AdminManagement implements Serializable {
-    List<Student> students;
-    List<Subject> subjects;
+    List<Student> students = new ArrayList<>();
+    List<Subject> subjects = new ArrayList<>();
 
-    public AdminManagement() {
-        this.students = new ArrayList<>();
-        this.subjects = new ArrayList<>();
-    }
 
     public void addStudent(Student student) {
         students.add(student);
@@ -26,13 +21,44 @@ public class AdminManagement implements Serializable {
         subjects.add(subject);
     }
 
-    public void deleteStudent(Student student) {
-        students.remove(student);
+    public void deleteStudentByCode(String studentCode) {
+        Student studentToDelete = findStudentByCode(studentCode);
+        if (studentToDelete != null) {
+            students.remove(studentToDelete);
+            System.out.println("Student with code " + studentCode + " deleted successfully.");
+        } else {
+            System.out.println("Student with code " + studentCode + " not found.");
+        }
     }
 
-    public void deleteSubject(Subject subject) {
-        subjects.remove(subject);
+    public void deleteSubjectByCode(String subjectCode) {
+        Subject subjectToDelete = findSubjectByCode(subjectCode);
+        if (subjectToDelete != null) {
+            subjects.remove(subjectToDelete);
+            System.out.println("Subject with code " + subjectCode + " deleted successfully.");
+        } else {
+            System.out.println("Subject with code " + subjectCode + " not found.");
+        }
     }
+
+    private Student findStudentByCode(String studentCode) {
+        for (Student student : students) {
+            if (student.getStudentCode().equals(studentCode)) {
+                return student;
+            }
+        }
+        return null;
+    }
+
+    private Subject findSubjectByCode(String subjectCode) {
+        for (Subject subject : subjects) {
+            if (subject.getCodeSubject().equals(subjectCode)) {
+                return subject;
+            }
+        }
+        return null;
+    }
+
 
     public List<Student> getStudents() {
         return students;
@@ -42,35 +68,6 @@ public class AdminManagement implements Serializable {
         return subjects;
     }
 
-
-    public void editStudentById(List<Student> studentList) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("nhập id cần sửa: ");
-        String studentCodeToEdit = scanner.nextLine();
-        int indexOfStudentToEdit = -1;
-        for (int i = 0; i < studentList.size(); i++) {
-            if (studentList.get(i).getStudentCode().equals(studentCodeToEdit)) {
-                indexOfStudentToEdit = i;
-                break;
-            }
-        }
-
-        if (indexOfStudentToEdit != -1) {
-            System.out.println("Thông tin trước khi sửa:");
-            System.out.println(studentList.get(indexOfStudentToEdit));
-
-            System.out.print("Nhập tên mới: ");
-            String newFirstName = scanner.nextLine();
-
-            Student studentToEdit = studentList.get(indexOfStudentToEdit);
-            studentToEdit.setFirstName(newFirstName);
-
-            System.out.println("Thông tin sau khi sửa:");
-            System.out.println(studentToEdit);
-        } else {
-            System.out.println("Không tìm thấy sinh viên có ID: " + studentCodeToEdit);
-        }
-    }
 }
 
 
