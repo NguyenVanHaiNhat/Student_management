@@ -7,7 +7,11 @@
     <list default="true" id="11b55c3a-6023-4b62-a2c1-34ac86fcde33" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/../../.." afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/management/AdminManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/AdminManagement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Chemistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Chemistry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Maths.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Maths.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Physical.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Physical.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Point.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Subject.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/ManagementView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ManagementView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -133,7 +137,7 @@
       <workItem from="1704776125436" duration="15516000" />
       <workItem from="1704795165459" duration="355000" />
       <workItem from="1704848106909" duration="29819000" />
-      <workItem from="1704933673343" duration="5390000" />
+      <workItem from="1704933673343" duration="15658000" />
     </task>
     <servers />
   </component>

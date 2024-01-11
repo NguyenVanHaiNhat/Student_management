@@ -1,8 +1,8 @@
 package model;
 
 public class Chemistry extends Point{
-    public Chemistry(String studentCode, String firstName, String lastName, String gender, String dayOfBirth, String phone, String nameSubject, String codeSubject, String numberOfCredits, String dayStart, String dayEnd, double exercisePoints, double testMarks, double midtermScore, double finalGrade, double practicePoint) {
-        super(studentCode, firstName, lastName, gender, dayOfBirth, phone, nameSubject, codeSubject, numberOfCredits, dayStart, dayEnd, exercisePoints, testMarks, midtermScore, finalGrade, practicePoint);
+    public Chemistry(double exercisePoints, double testMarks, double midtermScore, double finalGrade, double practicePoint) {
+        super(exercisePoints, testMarks, midtermScore, finalGrade, practicePoint);
     }
 
     @Override

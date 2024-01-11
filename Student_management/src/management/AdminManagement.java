@@ -1,7 +1,10 @@
 package management;
 
+import model.Chemistry;
+import model.Maths;
+import model.Physical;
 import model.Student;
-import model.Subject;
+
 import java.io.Serializable;
 import java.text.Collator;
 import java.util.ArrayList;
@@ -11,14 +14,21 @@ import java.util.List;
 
 public class AdminManagement implements Serializable {
     List<Student> students = new ArrayList<>();
-    List<Subject> subjects = new ArrayList<>();
+    List<Maths> maths = new ArrayList<>();
+    List<Physical> physicals = new ArrayList<>();
+    List<Chemistry> chemistries = new ArrayList<>();
 
     public void addStudent(Student student) {
         students.add(student);
     }
-
-    public void addSubject(Subject subject) {
-        subjects.add(subject);
+    public void addMaths(Maths math){
+        maths.add(math);
+    }
+    public void addPhysicals(Physical physical){
+        physicals.add(physical);
+    }
+    public void addChemistres(Chemistry chemistry){
+        chemistries.add(chemistry);
     }
 
     public void deleteStudentByCode(String studentCode) {
@@ -31,15 +41,6 @@ public class AdminManagement implements Serializable {
         }
     }
 
-    public void deleteSubjectByCode(String subjectCode) {
-        Subject subjectToDelete = findSubjectByCode(subjectCode);
-        if (subjectToDelete != null) {
-            subjects.remove(subjectToDelete);
-            System.out.println("Subject with code " + subjectCode + " deleted successfully.");
-        } else {
-            System.out.println("Subject with code " + subjectCode + " not found.");
-        }
-    }
 
     private Student findStudentByCode(String studentCode) {
         for (Student student : students) {
@@ -50,14 +51,7 @@ public class AdminManagement implements Serializable {
         return null;
     }
 
-    private Subject findSubjectByCode(String subjectCode) {
-        for (Subject subject : subjects) {
-            if (subject.getCodeSubject().equals(subjectCode)) {
-                return subject;
-            }
-        }
-        return null;
-    }
+
     public void sortStudentsByNameVietnamese() {
         Comparator<Student> vietnameseComparator = Comparator
                 .comparing(Student::getFirstName, Collator.getInstance(java.util.Locale.forLanguageTag("vi-VN")));
@@ -68,13 +62,12 @@ public class AdminManagement implements Serializable {
         return students;
     }
 
-    public List<Subject> getSubjects() {
-        return subjects;
-    }
     public List<Object> getAllEntities() {
         List<Object> allEntities = new ArrayList<>();
         allEntities.addAll(students);
-        allEntities.addAll(subjects);
+        allEntities.addAll(maths);
+        allEntities.addAll(physicals);
+        allEntities.addAll(chemistries);
         return allEntities;
     }
 

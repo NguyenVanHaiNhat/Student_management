@@ -28,52 +28,6 @@ public class CsvWriterAndRead {
         }
         return students;
     }
-
-    public List<SubjectHasThreeCredits> readSubjectHasThreeCredits(){
-        List<SubjectHasThreeCredits> subjectHasThreeCredits = new ArrayList<>();
-        List<String> strings = readFromFile(FILE_SUBJECT_PATH);
-
-        String[] temp;
-        for (String s: strings){
-            temp = s.split(",");
-            String nameSubject = temp[0];
-            String codeSubject = temp[1];
-            String numberOfCredits = temp[2];
-            String dayStart = temp[3];
-            String dayEnd = temp[4];
-            double exercisePoints = Double.parseDouble(temp[5]);
-            double testMarks = Double.parseDouble(temp[6]);
-            double midtermScore = Double.parseDouble(temp[7]);
-            double finalGrade = Double.parseDouble(temp[8]);
-            double practicePoint = Double.parseDouble(temp[9]);
-
-            SubjectHasThreeCredits subjectHasThreeCredits1 = new SubjectHasThreeCredits(nameSubject, codeSubject, numberOfCredits, dayStart, dayEnd, exercisePoints, testMarks, midtermScore, finalGrade, practicePoint);
-            subjectHasThreeCredits.add(subjectHasThreeCredits1);
-        }
-        return subjectHasThreeCredits;
-    }
-    public List<SubjectHasTwoCredits> readSubjectHasTwoCredits(){
-        List<SubjectHasTwoCredits> subjectHasTwoCredits = new ArrayList<>();
-        List<String> strings = readFromFile(FILE_SUBJECT_PATH);
-
-        String[] temp;
-        for (String s: strings){
-            temp = s.split(",");
-            String nameSubject = temp[0];
-            String codeSubject = temp[1];
-            String numberOfCredits = temp[2];
-            String dayStart = temp[3];
-            String dayEnd = temp[4];
-            double exercisePoints = Double.parseDouble(temp[5]);
-            double midtermScore = Double.parseDouble(temp[6]);
-            double finalGrade = Double.parseDouble(temp[7]);
-
-            SubjectHasTwoCredits subjectHasTwoCredits1 = new SubjectHasTwoCredits(nameSubject, codeSubject, numberOfCredits, dayStart, dayEnd, exercisePoints, midtermScore, finalGrade);
-            subjectHasTwoCredits.add(subjectHasTwoCredits1);
-        }
-        return subjectHasTwoCredits;
-    }
-
     public void writeStudent(List<Student> students){
         List<String> strings = new ArrayList<>();
 
@@ -82,24 +36,6 @@ public class CsvWriterAndRead {
         }
         writeToFile(FILE_STUDENT_PATH, strings);
     }
-
-    public void writeSubjectHasThreeCredits(List<SubjectHasThreeCredits> subjects){
-        List<String> strings = new ArrayList<>();
-
-        for (SubjectHasThreeCredits subjectHasThreeCredits: subjects){
-            strings.add(subjectHasThreeCredits.covertToLine2());
-        }
-        writeToFile(FILE_SUBJECT_PATH, strings);
-    }
-    public void writeSubjectHasTwoCredits(List<SubjectHasTwoCredits> subjects){
-        List<String> strings = new ArrayList<>();
-
-        for (SubjectHasTwoCredits subjectHasTwoCredits: subjects){
-            strings.add(subjectHasTwoCredits.covertToLine1());
-        }
-        writeToFile(FILE_SUBJECT_PATH, strings);
-    }
-
     private void writeToFile(String pathFile, List<String> strings) {
         try {
             FileWriter fileWriter = new FileWriter(pathFile);

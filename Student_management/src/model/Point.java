@@ -1,20 +1,20 @@
 package model;
 
-public abstract class Point extends Subject {
+public abstract class Point extends Student {
     private double exercisePoints;
     private double testMarks;
     private double midtermScore;
     private double finalGrade;
     private double practicePoint;
 
-    public Point(String studentCode, String firstName, String lastName, String gender, String dayOfBirth, String phone, String nameSubject, String codeSubject, String numberOfCredits, String dayStart, String dayEnd, double exercisePoints, double testMarks, double midtermScore, double finalGrade, double practicePoint) {
-        super(studentCode, firstName, lastName, gender, dayOfBirth, phone, nameSubject, codeSubject, numberOfCredits, dayStart, dayEnd);
+    public Point(double exercisePoints, double testMarks, double midtermScore, double finalGrade, double practicePoint) {
         this.exercisePoints = exercisePoints;
         this.testMarks = testMarks;
         this.midtermScore = midtermScore;
         this.finalGrade = finalGrade;
         this.practicePoint = practicePoint;
     }
+
 
     public double getExercisePoints() {
         return exercisePoints;
