@@ -52,13 +52,15 @@ public class ManagementView {
             System.out.println("2. add new subject");
             System.out.println("3. display student");
             System.out.println("4. display subject");
+            System.out.println("13 display all");
             System.out.println("5. edit student");
             System.out.println("6. edit subject point");
             System.out.println("7. delete student");
             System.out.println("8. delete point");
             System.out.println("9. write to file");
             System.out.println("10. read to file");
-            System.out.println("11. Back Main Menu");
+            System.out.println("11. sort student name");
+            System.out.println("12. Back Main Menu");
             System.out.print("your choice: ");
             int choice = scanner.nextByte();
 
@@ -99,7 +101,14 @@ public class ManagementView {
                     csv.readStudent();
                     break;
                 case 11:
+                    adminManagement.sortStudentsByNameVietnamese();
+                    displayStudentList();
+                    break;
+                case 12:
                     showMainMenu();
+                    break;
+                case 13:
+                    adminManagement.getAllEntities();
                     break;
                 default:
                     System.out.println("choice again: ");
@@ -375,6 +384,12 @@ public class ManagementView {
         System.out.println("List of Subject:");
         for (Subject subject: subjects){
             System.out.println(subject);
+        }
+    }
+    private static void displayAllEntities(List<Object> allEntities) {
+        System.out.println("List of All Entities:");
+        for (Object entity : allEntities) {
+            System.out.println(entity);
         }
     }
 }

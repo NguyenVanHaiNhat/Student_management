@@ -1,6 +1,6 @@
 package model;
 
-public class Student {
+public class Student implements Comparable<Student> {
     private String studentCode;
     private String firstName;
     private String lastName;
@@ -82,5 +82,10 @@ public class Student {
                 ", dayOfBirth='" + dayOfBirth + '\'' +
                 ", phone='" + phone + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Student otherStudent) {
+        return this.getFirstName().compareTo(otherStudent.getFirstName());
     }
 }

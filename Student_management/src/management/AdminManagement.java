@@ -3,7 +3,9 @@ package management;
 import model.Student;
 import model.Subject;
 import java.io.Serializable;
+import java.text.Collator;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -56,7 +58,11 @@ public class AdminManagement implements Serializable {
         }
         return null;
     }
-
+    public void sortStudentsByNameVietnamese() {
+        Comparator<Student> vietnameseComparator = Comparator
+                .comparing(Student::getFirstName, Collator.getInstance(java.util.Locale.forLanguageTag("vi-VN")));
+        students.sort(vietnameseComparator);
+    }
 
     public List<Student> getStudents() {
         return students;
@@ -64,6 +70,12 @@ public class AdminManagement implements Serializable {
 
     public List<Subject> getSubjects() {
         return subjects;
+    }
+    public List<Object> getAllEntities() {
+        List<Object> allEntities = new ArrayList<>();
+        allEntities.addAll(students);
+        allEntities.addAll(subjects);
+        return allEntities;
     }
 
 }
