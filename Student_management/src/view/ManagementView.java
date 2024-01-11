@@ -188,7 +188,6 @@ public class ManagementView {
 
     private static void addMathsPointsForStudent(List<Object> objects, Student student) {
         Maths maths = findMathsObject(objects, student.getStudentCode());
-
         if (maths != null) {
             System.out.println("Select the point to add:");
             System.out.println("1. exercise points");
@@ -544,7 +543,7 @@ public class ManagementView {
         Chemistry chemistry = findChemistryObject(objects, student.getStudentCode());
 
         if (chemistry != null) {
-            System.out.println("Select the point to correct: ");
+            System.out.println("Chọn điểm cần sửa: ");
             System.out.println("1. exercise points");
             System.out.println("2. test marks");
             System.out.println("3. practice Point");

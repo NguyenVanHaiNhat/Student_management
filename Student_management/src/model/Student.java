@@ -1,5 +1,4 @@
 package model;
-
 public class Student implements Comparable<Student> {
     private String studentCode;
     private String firstName;
