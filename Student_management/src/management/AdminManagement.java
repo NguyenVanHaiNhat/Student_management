@@ -2,7 +2,6 @@ package management;
 
 import model.Student;
 import model.Subject;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +10,6 @@ import java.util.List;
 public class AdminManagement implements Serializable {
     List<Student> students = new ArrayList<>();
     List<Subject> subjects = new ArrayList<>();
-
 
     public void addStudent(Student student) {
         students.add(student);

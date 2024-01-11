@@ -90,11 +90,15 @@ public class ManagementView {
                 case 8:
                     System.out.println("Enter subjectCode wain to delete: ");
                     String codeSubject = RegexHandler.checkRegexSubjectCode();
-                    adminManagement.deleteStudentByCode(codeSubject);
+                    adminManagement.deleteSubjectByCode(codeSubject);
                     break;
                 case 9:
                     csv.writeStudent(students);
+                    break;
                 case 10:
+                    csv.readStudent();
+                    break;
+                case 11:
                     showMainMenu();
                     break;
                 default:

@@ -40,7 +40,8 @@ public class SubjectHasTwoCredits extends Subject implements PointCaculate {
     @Override
     public String toString() {
         return "SubjectHasTwoCredits{" +
-                "nameSubject=" + getNameSubject() +
+                "nameStudent=" + getFirstName() + getLastName() +
+                ", nameSubject=" + getNameSubject() +
                 ", codeSubject=" + getCodeSubject() +
                 ", exercisePoints=" + exercisePoints +
                 ", midtermScore=" + midtermScore +

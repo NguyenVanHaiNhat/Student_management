@@ -6,9 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="11b55c3a-6023-4b62-a2c1-34ac86fcde33" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/../../.." afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/ConsiderPassingScores.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/file/RegexHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/file/RegexHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/danhsachsinhvien.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/danhsachsinhvien.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/management/AdminManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/AdminManagement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/SubjectHasThreeCredits.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/SubjectHasThreeCredits.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/SubjectHasTwoCredits.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/SubjectHasTwoCredits.java" afterDir="false" />
@@ -52,7 +52,7 @@
     "extract.method.default.visibility": "private",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/Bootcamp Java Fullstack/C1023H1-JV101-NguyenVanHaiNhat/Module_2/minitest/minitest4",
+    "last_opened_file_path": "E:/Bootcamp Java Fullstack/C1023H1-JV101-NguyenVanHaiNhat/Module_2/minitest/minitest1",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -136,7 +136,8 @@
       <workItem from="1704770017643" duration="477000" />
       <workItem from="1704776125436" duration="15516000" />
       <workItem from="1704795165459" duration="355000" />
-      <workItem from="1704848106909" duration="27057000" />
+      <workItem from="1704848106909" duration="29819000" />
+      <workItem from="1704933673343" duration="3441000" />
     </task>
     <servers />
   </component>

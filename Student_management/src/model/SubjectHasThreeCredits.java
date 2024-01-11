@@ -59,7 +59,8 @@ public class SubjectHasThreeCredits extends Subject implements PointCaculate {
     @Override
     public String toString() {
         return "SubjectHasThreeCredits{" +
-                "nameSubject=" + getNameSubject() +
+                "nameStudent=" + getFirstName() + getLastName() +
+                ", nameSubject=" + getNameSubject() +
                 ", codeSubject" + getCodeSubject() +
                 ", exercisePoints=" + exercisePoints +
                 ", testMarks=" + testMarks +
