@@ -1,8 +1,6 @@
 package file;
 
 import model.Student;
-import model.SubjectHasThreeCredits;
-import model.SubjectHasTwoCredits;
 
 import java.io.*;
 import java.util.ArrayList;

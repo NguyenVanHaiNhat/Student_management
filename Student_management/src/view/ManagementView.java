@@ -5,8 +5,6 @@ import file.RegexHandler;
 import management.AdminManagement;
 import model.Student;
 import model.Subject;
-import model.SubjectHasThreeCredits;
-import model.SubjectHasTwoCredits;
 
 import java.util.List;
 import java.util.Scanner;
