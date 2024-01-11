@@ -6,12 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="11b55c3a-6023-4b62-a2c1-34ac86fcde33" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/../../.." afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/management/AdminManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/AdminManagement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Chemistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Chemistry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Maths.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Maths.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Physical.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Physical.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Point.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Subject.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/ManagementView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ManagementView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,31 +37,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.CsvWriter.executor": "Debug",
-    "Application.Main.executor": "Run",
-    "Application.ManagementView.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/Bootcamp Java Fullstack/C1023H1-JV101-NguyenVanHaiNhat/Module_2/minitest/minitest1",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.CsvWriter.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ManagementView.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Bootcamp Java Fullstack/C1023H1-JV101-NguyenVanHaiNhat/Module_2/minitest/minitest1&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Bootcamp Java Fullstack\C1023H1-JV101-NguyenVanHaiNhat\Module_2\Case_study\Student_management\src\data" />
@@ -137,7 +133,8 @@
       <workItem from="1704776125436" duration="15516000" />
       <workItem from="1704795165459" duration="355000" />
       <workItem from="1704848106909" duration="29819000" />
-      <workItem from="1704933673343" duration="15658000" />
+      <workItem from="1704933673343" duration="16584000" />
+      <workItem from="1704955342326" duration="1317000" />
     </task>
     <servers />
   </component>

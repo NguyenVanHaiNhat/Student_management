@@ -152,64 +152,182 @@ public class ManagementView {
             }
         }
         if (index != -1) {
-            System.out.println("Thông tin được tìm thấy: ");
+            System.out.println("Information found: ");
             System.out.println(students.get(index));
         }
     }
+    public static void addPoint() {
+        System.out.println("Enter student code to add points: ");
+        String studentCode = scanner.nextLine().trim();
 
-    public static void addPoint(){
-        System.out.println("1. Maths");
-        System.out.println("2. Physical");
-        System.out.println("3. Chemistry");
-        int choice = scanner.nextByte();
-        switch (choice){
-            case 1:
-                System.out.println("Enter exercise points: ");
-                double exercisePoints = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                System.out.println("Enter test mark Score: ");
-                double testMarks = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                System.out.println("Enter practice Point: ");
-                double practicePoint = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                System.out.println("Enter midterm Score: ");
-                double midtermScorce = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                System.out.println("Enter final grade: ");
-                double finalGrade = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                Maths maths = new Maths(exercisePoints, testMarks, practicePoint, midtermScorce, finalGrade);
-                adminManagement.addMaths(maths);
-                System.out.println("Done add");
-                break;
-            case 2:
-                System.out.println("Enter exercise points: ");
-                double exercisePoints1 = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                System.out.println("Enter test mark Score: ");
-                double testMarks1 = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                System.out.println("Enter practice Point: ");
-                double practicePoint1 = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                System.out.println("Enter midterm Score: ");
-                double midtermScorce1 = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                System.out.println("Enter final grade: ");
-                double finalGrade1 = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                Physical physical = new Physical(exercisePoints1, testMarks1, practicePoint1, midtermScorce1, finalGrade1);
-                adminManagement.addPhysicals(physical);
-                System.out.println("Done add");
-                break;
-            case 3:
-                System.out.println("Enter exercise points: ");
-                double exercisePoints2 = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                System.out.println("Enter test mark Score: ");
-                double testMarks2 = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                System.out.println("Enter practice Point: ");
-                double practicePoint2 = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                System.out.println("Enter midterm Score: ");
-                double midtermScorce2 = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                System.out.println("Enter final grade: ");
-                double finalGrade2 = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                Chemistry chemistry = new Chemistry(exercisePoints2, testMarks2, practicePoint2, midtermScorce2, finalGrade2);
-                adminManagement.addChemistres(chemistry);
-                System.out.println("Done add");
-                break;
+        int indexOfStudent = findStudentIndex(adminManagement.getStudents(), studentCode);
+
+        if (indexOfStudent != -1) {
+            System.out.println("1. Maths");
+            System.out.println("2. Physical");
+            System.out.println("3. Chemistry");
+            int choice = scanner.nextByte();
+            switch (choice) {
+                case 1:
+                    addMathsPointsForStudent(adminManagement.getAllEntities(), adminManagement.getStudents().get(indexOfStudent));
+                    break;
+                case 2:
+                    addPhysicalPointsForStudent(adminManagement.getAllEntities(), adminManagement.getStudents().get(indexOfStudent));
+                    break;
+                case 3:
+                    addChemistryPointsForStudent(adminManagement.getAllEntities(), adminManagement.getStudents().get(indexOfStudent));
+                    break;
+                default:
+                    System.out.println("Invalid choice");
+                    break;
+            }
+        } else {
+            System.out.println("Student not found with code: " + studentCode);
         }
+    }
 
+    private static void addMathsPointsForStudent(List<Object> objects, Student student) {
+        Maths maths = findMathsObject(objects, student.getStudentCode());
+
+        if (maths != null) {
+            System.out.println("Select the point to add:");
+            System.out.println("1. exercise points");
+            System.out.println("2. test marks");
+            System.out.println("3. practice Point");
+            System.out.println("4. midterm Score");
+            System.out.println("5. final Grade");
+            int mathschoice = scanner.nextInt();
+            switch (mathschoice) {
+                case 1:
+                    System.out.println("Enter exercise points: ");
+                    double newExercisePoint = Double.parseDouble(RegexHandler.checkNumOfCredits());
+                    maths.setExercisePoints(newExercisePoint);
+                    break;
+                case 2:
+                    System.out.println("Enter test marks: ");
+                    double newTestMarks = Double.parseDouble(RegexHandler.checkNumOfCredits());
+                    maths.setTestMarks(newTestMarks);
+                    break;
+                case 3:
+                    System.out.println("Enter practice Point: ");
+                    double newPracticePoint = Double.parseDouble(RegexHandler.checkNumOfCredits());
+                    maths.setPracticePoint(newPracticePoint);
+                    break;
+                case 4:
+                    System.out.println("Enter midterm Score: ");
+                    double newMidTermScore = Double.parseDouble(RegexHandler.checkNumOfCredits());
+                    maths.setMidtermScore(newMidTermScore);
+                    break;
+                case 5:
+                    System.out.println("Enter final Grade: ");
+                    double newFinalGrade = Double.parseDouble(RegexHandler.checkNumOfCredits());
+                    maths.setFinalGrade(newFinalGrade);
+                    break;
+                default:
+                    System.out.println("choice again");
+                    break;
+            }
+
+            System.out.println("Maths points updated successfully.");
+        } else {
+            System.out.println("Invalid operation. Student has not registered for Maths.");
+        }
+    }
+
+    private static void addPhysicalPointsForStudent(List<Object> objects, Student student) {
+        Physical physical = findPhysicalObject(objects, student.getStudentCode());
+
+        if (physical != null) {
+            System.out.println("Select points to add: ");
+            System.out.println("1. exercise points");
+            System.out.println("2. test marks");
+            System.out.println("3. practice Point");
+            System.out.println("4. midterm Score");
+            System.out.println("5. final Grade");
+            int physicalchoice = scanner.nextInt();
+            switch (physicalchoice) {
+                case 1:
+                    System.out.println("Enter exercise points: ");
+                    double newExercisePoint = Double.parseDouble(RegexHandler.checkNumOfCredits());
+                    physical.setExercisePoints(newExercisePoint);
+                    break;
+                case 2:
+                    System.out.println("Enter test marks: ");
+                    double newTestMarks = Double.parseDouble(RegexHandler.checkNumOfCredits());
+                    physical.setTestMarks(newTestMarks);
+                    break;
+                case 3:
+                    System.out.println("Enter practice Point: ");
+                    double newPracticePoint = Double.parseDouble(RegexHandler.checkNumOfCredits());
+                    physical.setPracticePoint(newPracticePoint);
+                    break;
+                case 4:
+                    System.out.println("Enter midterm Score: ");
+                    double newMidTermScore = Double.parseDouble(RegexHandler.checkNumOfCredits());
+                    physical.setMidtermScore(newMidTermScore);
+                    break;
+                case 5:
+                    System.out.println("Enter final Grade: ");
+                    double newFinalGrade = Double.parseDouble(RegexHandler.checkNumOfCredits());
+                    physical.setFinalGrade(newFinalGrade);
+                    break;
+                default:
+                    System.out.println("choice again");
+                    break;
+            }
+
+            System.out.println("Physical points updated successfully.");
+        } else {
+            System.out.println("Invalid operation. Student has not registered for Physical.");
+        }
+    }
+
+    private static void addChemistryPointsForStudent(List<Object> objects, Student student) {
+        Chemistry chemistry = findChemistryObject(objects, student.getStudentCode());
+
+        if (chemistry != null) {
+            System.out.println("Select points to add: ");
+            System.out.println("1. exercise points");
+            System.out.println("2. test marks");
+            System.out.println("3. practice Point");
+            System.out.println("4. midterm Score");
+            System.out.println("5. final Grade");
+            int chemistychoice = scanner.nextInt();
+            switch (chemistychoice) {
+                case 1:
+                    System.out.println("Enter exercise points: ");
+                    double newExercisePoint = Double.parseDouble(RegexHandler.checkNumOfCredits());
+                    chemistry.setExercisePoints(newExercisePoint);
+                    break;
+                case 2:
+                    System.out.println("Enter test marks: ");
+                    double newTestMarks = Double.parseDouble(RegexHandler.checkNumOfCredits());
+                    chemistry.setTestMarks(newTestMarks);
+                    break;
+                case 3:
+                    System.out.println("Enter practice Point: ");
+                    double newPracticePoint = Double.parseDouble(RegexHandler.checkNumOfCredits());
+                    chemistry.setPracticePoint(newPracticePoint);
+                    break;
+                case 4:
+                    System.out.println("Enter midterm Score: ");
+                    double newMidTermScore = Double.parseDouble(RegexHandler.checkNumOfCredits());
+                    chemistry.setMidtermScore(newMidTermScore);
+                    break;
+                case 5:
+                    System.out.println("Enter final Grade: ");
+                    double newFinalGrade = Double.parseDouble(RegexHandler.checkNumOfCredits());
+                    chemistry.setFinalGrade(newFinalGrade);
+                    break;
+                default:
+                    System.out.println("choice again");
+                    break;
+            }
+
+            System.out.println("Chemistry points updated successfully.");
+        } else {
+            System.out.println("Invalid operation. Student has not registered for Chemistry.");
+        }
     }
 
     public static void addNewStudent(){
@@ -242,55 +360,55 @@ public class ManagementView {
         }
 
         if (indexOfStudentToEdit != -1) {
-            System.out.println("Thông tin trước khi sửa:");
+            System.out.println("Information before editing: ");
             System.out.println(students.get(indexOfStudentToEdit));
 
-            System.out.println("Chọn thông tin cần sửa:");
-            System.out.println("1. Tên");
-            System.out.println("2. Họ");
-            System.out.println("3. Giới tính");
-            System.out.println("4. Ngày sinh");
-            System.out.println("5. sdt");
+            System.out.println("Select the information to edit: ");
+            System.out.println("1. First Name");
+            System.out.println("2. Last Name");
+            System.out.println("3. Gender");
+            System.out.println("4. Day of brith");
+            System.out.println("5. phone");
 
-            System.out.print("Nhập lựa chọn của bạn: ");
+            System.out.print("Enter your selection: ");
             int userChoice = scanner.nextInt();
             scanner.nextLine();
 
             switch (userChoice) {
                 case 1:
-                    System.out.print("Nhập họ mới: ");
+                    System.out.print("Enter new first name: ");
                     String newFirstName = RegexHandler.checkRegexName();
                     students.get(indexOfStudentToEdit).setFirstName(newFirstName);
                     break;
                 case 2:
-                    System.out.print("Nhập tên mới: ");
+                    System.out.print("Enter new last name: ");
                     String newLastName = RegexHandler.checkRegexName();
                     students.get(indexOfStudentToEdit).setLastName(newLastName);
                     break;
                 case 3:
-                    System.out.print("Nhập giới tính mới: ");
+                    System.out.print("Enter new gender: ");
                     String newGender = RegexHandler.checkRegexName();
                     students.get(indexOfStudentToEdit).setGender(newGender);
                     break;
                 case 4:
-                    System.out.println("Nhập ngày sinh: ");
+                    System.out.println("Enter day of brith: ");
                     String newDay = RegexHandler.checkRegexDate();
                     students.get(indexOfStudentToEdit).setDayOfBirth(newDay);
                     break;
                 case 5:
-                    System.out.println("Nhập số điện thoại");
+                    System.out.println("Enter new phone: ");
                     String newPhone = RegexHandler.checkPhoneNumber();
                     students.get(indexOfStudentToEdit).setPhone(newPhone);
                     break;
                 default:
-                    System.out.println("Lựa chọn không hợp lệ.");
+                    System.out.println("Invalid selection.");
                     break;
             }
 
-            System.out.println("Thông tin sau khi sửa:");
+            System.out.println("Information after editing:");
             System.out.println(students.get(indexOfStudentToEdit));
         } else {
-            System.out.println("Không tìm thấy sinh viên có ID: " + studentCodeToEdit);
+                System.out.println("No student found with ID: " + studentCodeToEdit);
         }
     }
     private static void editPoint(List<Object> objects, List<Student> students) {
@@ -299,6 +417,8 @@ public class ManagementView {
         int indexOfStudentToEdit = findStudentIndex(students, studentCodeToEdit);
 
         if (indexOfStudentToEdit != -1) {
+            System.out.println("Information before editing: ");
+            System.out.println(objects.get(indexOfStudentToEdit));
             System.out.println("Choose a subject to edit points:");
             System.out.println("1. Maths");
             System.out.println("2. Physical");
@@ -328,7 +448,7 @@ public class ManagementView {
         Maths maths = findMathsObject(objects, student.getStudentCode());
 
         if (maths != null) {
-            System.out.println("Chọn điểm cần sửa: ");
+            System.out.println("Select the point to correct: ");
             System.out.println("1. exercise points");
             System.out.println("2. test marks");
             System.out.println("3. practice Point");
@@ -337,27 +457,27 @@ public class ManagementView {
             int mathschoice = scanner.nextInt();
             switch (mathschoice){
                 case 1:
-                    System.out.println("Enter: ");
+                    System.out.println("Enter exercise points: ");
                     double newExercisePoint = Double.parseDouble(RegexHandler.checkNumOfCredits());
                     maths.setExercisePoints(newExercisePoint);
                     break;
                 case 2:
-                    System.out.println("Enter: ");
+                    System.out.println("Enter test marks: ");
                     double newTestMarks = Double.parseDouble(RegexHandler.checkNumOfCredits());
                     maths.setTestMarks(newTestMarks);
                     break;
                 case 3:
-                    System.out.println("Enter: ");
+                    System.out.println("Enter practice Point: ");
                     double newPracticePoint = Double.parseDouble(RegexHandler.checkNumOfCredits());
                     maths.setPracticePoint(newPracticePoint);
                     break;
                 case 4:
-                    System.out.println("Enter: ");
+                    System.out.println("Enter midterm Score: ");
                     double newMidTermScore = Double.parseDouble(RegexHandler.checkNumOfCredits());
                     maths.setMidtermScore(newMidTermScore);
                     break;
                 case 5:
-                    System.out.println("Enter: ");
+                    System.out.println("Enter final Grade: ");
                     double newFinalGrade = Double.parseDouble(RegexHandler.checkNumOfCredits());
                     maths.setFinalGrade(newFinalGrade);
                     break;
@@ -376,8 +496,43 @@ public class ManagementView {
         Physical physical = findPhysicalObject(objects, student.getStudentCode());
 
         if (physical != null) {
-            // Perform edits for Physical points
-            // ...
+            System.out.println("Select the point to correct: ");
+            System.out.println("1. exercise points");
+            System.out.println("2. test marks");
+            System.out.println("3. practice Point");
+            System.out.println("4. midterm Score");
+            System.out.println("5. final Grade");
+            int physicalchoice = scanner.nextInt();
+            switch (physicalchoice){
+                case 1:
+                    System.out.println("Enter exercise points: ");
+                    double newExercisePoint = Double.parseDouble(RegexHandler.checkNumOfCredits());
+                    physical.setExercisePoints(newExercisePoint);
+                    break;
+                case 2:
+                    System.out.println("Enter test marks: ");
+                    double newTestMarks = Double.parseDouble(RegexHandler.checkNumOfCredits());
+                    physical.setTestMarks(newTestMarks);
+                    break;
+                case 3:
+                    System.out.println("Enter practice Point: ");
+                    double newPracticePoint = Double.parseDouble(RegexHandler.checkNumOfCredits());
+                    physical.setPracticePoint(newPracticePoint);
+                    break;
+                case 4:
+                    System.out.println("Enter midterm Score: ");
+                    double newMidTermScore = Double.parseDouble(RegexHandler.checkNumOfCredits());
+                    physical.setMidtermScore(newMidTermScore);
+                    break;
+                case 5:
+                    System.out.println("Enter final Grade: ");
+                    double newFinalGrade = Double.parseDouble(RegexHandler.checkNumOfCredits());
+                    physical.setFinalGrade(newFinalGrade);
+                    break;
+                default:
+                    System.out.println("choice again");
+                    break;
+            }
 
             System.out.println("Physical points updated successfully.");
         } else {
@@ -389,8 +544,43 @@ public class ManagementView {
         Chemistry chemistry = findChemistryObject(objects, student.getStudentCode());
 
         if (chemistry != null) {
-            // Perform edits for Chemistry points
-            // ...
+            System.out.println("Select the point to correct: ");
+            System.out.println("1. exercise points");
+            System.out.println("2. test marks");
+            System.out.println("3. practice Point");
+            System.out.println("4. midterm Score");
+            System.out.println("5. final Grade");
+            int chemistychoice = scanner.nextInt();
+            switch (chemistychoice){
+                case 1:
+                    System.out.println("Enter exercise points: ");
+                    double newExercisePoint = Double.parseDouble(RegexHandler.checkNumOfCredits());
+                    chemistry.setExercisePoints(newExercisePoint);
+                    break;
+                case 2:
+                    System.out.println("Enter test marks: ");
+                    double newTestMarks = Double.parseDouble(RegexHandler.checkNumOfCredits());
+                    chemistry.setTestMarks(newTestMarks);
+                    break;
+                case 3:
+                    System.out.println("Enter practice Point: ");
+                    double newPracticePoint = Double.parseDouble(RegexHandler.checkNumOfCredits());
+                    chemistry.setPracticePoint(newPracticePoint);
+                    break;
+                case 4:
+                    System.out.println("Enter midterm Score: ");
+                    double newMidTermScore = Double.parseDouble(RegexHandler.checkNumOfCredits());
+                    chemistry.setMidtermScore(newMidTermScore);
+                    break;
+                case 5:
+                    System.out.println("Enter final Grade: ");
+                    double newFinalGrade = Double.parseDouble(RegexHandler.checkNumOfCredits());
+                    chemistry.setFinalGrade(newFinalGrade);
+                    break;
+                default:
+                    System.out.println("choice again");
+                    break;
+            }
 
             System.out.println("Chemistry points updated successfully.");
         } else {
