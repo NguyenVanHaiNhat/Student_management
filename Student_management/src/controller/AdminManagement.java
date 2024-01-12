@@ -1,10 +1,11 @@
-package management;
+package controller;
 
 import model.*;
 
 import java.io.Serializable;
 import java.text.Collator;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -57,7 +58,6 @@ public class AdminManagement implements Serializable {
         private double calculateNewAvgPoint(double currentAvg, double newExercisePoints, double newTestMarks, double newPracticePoint, double newMidtermScore, double newFinalGrade) {
             return (currentAvg + newExercisePoints + newTestMarks + newPracticePoint + newMidtermScore * 2 + newFinalGrade * 3) / 8;
         }
-
     private Student findStudentByCode(String studentCode) {
         for (Student student : students) {
             if (student.getStudentCode().equals(studentCode)) {

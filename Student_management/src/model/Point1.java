@@ -1,7 +1,7 @@
 package model;
 
 
-public class Point1 extends Student{
+public class Point1 extends Student implements CheckRanking{
     private double avgMaths;
     private double avgPhysical;
     private double avgChemistry;
@@ -36,6 +36,26 @@ public class Point1 extends Student{
     public void setAvgChemistry(double avgChemistry) {
         this.avgChemistry = avgChemistry;
     }
+    @Override
+    public double getAvgAllSubject() {
+        return (getAvgChemistry() + getAvgMaths() + getAvgPhysical())/3;
+    }
+
+    @Override
+    public String ranking() {
+        if (getAvgAllSubject() > 9){
+            return "excellent";
+        } else if (getAvgAllSubject() > 7){
+            return "academic pretty";
+        } else if (getAvgAllSubject() > 5){
+            return "medium";
+        } else if (getAvgAllSubject() > 3){
+            return "weak";
+        } else if (getAvgAllSubject() < 3){
+            return "fail the subject";
+        }
+        return "hack";
+    }
 
     @Override
     public String toString() {
@@ -46,6 +66,8 @@ public class Point1 extends Student{
                 ", avgMaths=" + avgMaths +
                 ", avgPhysical=" + avgPhysical +
                 ", avgChemistry=" + avgChemistry +
+                ", avg=" + getAvgAllSubject() +
+                ", rank=" + ranking() +
                 '}';
     }
 }

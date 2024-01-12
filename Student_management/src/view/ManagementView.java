@@ -2,7 +2,7 @@ package view;
 
 import file.CsvWriterAndRead;
 import file.RegexHandler;
-import management.AdminManagement;
+import controller.AdminManagement;
 import model.*;
 
 import java.util.List;
@@ -54,8 +54,7 @@ public class ManagementView {
             System.out.println("8. write to file");
             System.out.println("9. read to file");
             System.out.println("10. sort student name");
-            System.out.println("11 display all");
-            System.out.println("12. Back Main Menu");
+            System.out.println("11. Back Main Menu");
             System.out.print("your choice: ");
             int choice = scanner.nextByte();
 
@@ -95,8 +94,6 @@ public class ManagementView {
                     displayStudentList();
                     break;
                 case 11:
-                    break;
-                case 12:
                     showMainMenu();
                     break;
                 default:
@@ -108,7 +105,7 @@ public class ManagementView {
 
     private static void showMenuStudent() {
         while (true){
-            List<Student> students = adminManagement.getStudents();
+            List<Point1> point1s = adminManagement.getPoint1s();
             System.out.println("Student Menu");
             System.out.println("1. display student list");
             System.out.println("2. display all list");
@@ -123,7 +120,7 @@ public class ManagementView {
                     displayStudentAndPoint();
                     break;
                 case 3:
-                    findStudentById(students);
+                    findStudentById(point1s);
                     break;
                 case 4:
                     showMainMenu();
@@ -135,20 +132,19 @@ public class ManagementView {
         }
     }
 
-
-    private static void findStudentById(List<Student> students) {
+    private static void findStudentById(List<Point1> point1s) {
         System.out.println("Enter student code to find:");
         String codeStudent = scanner.nextLine().trim();
         int index = -1;
-        for (int i = 0; i < students.size(); i++) {
-            if (students.get(i).getStudentCode().equals(codeStudent)) {
+        for (int i = 0; i < point1s.size(); i++) {
+            if (point1s.get(i).getStudentCode().equals(codeStudent)) {
                 index = i;
                 break;
             }
         }
         if (index != -1) {
             System.out.println("Information found: ");
-            System.out.println(students.get(index));
+            System.out.println(point1s.get(index));
         }
     }
 
@@ -224,7 +220,6 @@ public class ManagementView {
         adminManagement.addPoint(point1);
         System.out.println("Done add");
     }
-
 
     public static void editStudentById(List<Student> students) {
         System.out.println("Enter student code to edit:");
@@ -307,6 +302,8 @@ public class ManagementView {
 
         adminManagement.editSubjectPointsByStudentCode(studentCodeToEdit, subject, newExercisePoints, newTestMarks, newPracticePoint, newMidtermScore, newFinalGrade);
     }
+    
+
 
     public static void displayStudentList() {
         List<Student> students = adminManagement.getStudents();

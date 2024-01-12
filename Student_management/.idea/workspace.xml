@@ -6,13 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="11b55c3a-6023-4b62-a2c1-34ac86fcde33" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/../../.." afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/Point1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/CheckRanking.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/management/AdminManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/AdminManagement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Chemistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Chemistry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Maths.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Maths.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Physical.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Physical.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Point.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/management/AdminManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/AdminManagement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/ConsiderPassingScores.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/ConsiderPassingScores.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Point1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Point1.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/ManagementView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ManagementView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -23,8 +21,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -144,7 +142,7 @@
       <workItem from="1704977378775" duration="5723000" />
       <workItem from="1705017275321" duration="159000" />
       <workItem from="1705017668944" duration="1242000" />
-      <workItem from="1705020626642" duration="2570000" />
+      <workItem from="1705020626642" duration="9174000" />
     </task>
     <servers />
   </component>
