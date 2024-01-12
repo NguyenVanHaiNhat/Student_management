@@ -1,8 +1,18 @@
 package model;
 
 public class Maths extends Point{
-    public Maths(double exercisePoints, double testMarks, double midtermScore, double finalGrade, double practicePoint) {
+    private String id;
+    public Maths(String id,double exercisePoints, double testMarks, double midtermScore, double finalGrade, double practicePoint) {
         super(exercisePoints, testMarks, midtermScore, finalGrade, practicePoint);
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     @Override

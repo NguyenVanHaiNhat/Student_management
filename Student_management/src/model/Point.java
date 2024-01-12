@@ -1,11 +1,11 @@
 package model;
 
 public abstract class Point extends Student {
-    private double exercisePoints;
-    private double testMarks;
-    private double midtermScore;
-    private double finalGrade;
-    private double practicePoint;
+    protected double exercisePoints;
+    protected double testMarks;
+    protected double midtermScore;
+    protected double finalGrade;
+    protected double practicePoint;
 
     public Point(double exercisePoints, double testMarks, double midtermScore, double finalGrade, double practicePoint) {
         this.exercisePoints = exercisePoints;

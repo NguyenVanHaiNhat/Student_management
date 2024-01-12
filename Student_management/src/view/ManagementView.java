@@ -3,10 +3,7 @@ package view;
 import file.CsvWriterAndRead;
 import file.RegexHandler;
 import management.AdminManagement;
-import model.Chemistry;
-import model.Maths;
-import model.Physical;
-import model.Student;
+import model.*;
 
 import java.util.List;
 import java.util.Scanner;
@@ -46,7 +43,6 @@ public class ManagementView {
     private static void showMenuAdmin() {
         while (true) {
             List<Student> students = adminManagement.getStudents();
-            List<Object> objects = adminManagement.getAllEntities();
             System.out.println("Admin Management");
             System.out.println("1. add new student");
             System.out.println("2. add new subject");
@@ -69,19 +65,19 @@ public class ManagementView {
                     addNewStudent();
                     break;
                 case 2:
-                    addPoint();
+                    addNewStudentPoint();
                     break;
                 case 3:
                     displayStudentList();
                     break;
                 case 4:
-                    displayAllEntities(adminManagement.getAllEntities());
+                    displayStudentAndPoint();
                     break;
                 case 5:
                     editStudentById(students);
                     break;
                 case 6:
-                    editPoint(objects, students);
+                    editSubjectPointsByCode();
                     break;
                 case 7:
                     System.out.println("Enter studentCode want to delete: ");
@@ -99,7 +95,6 @@ public class ManagementView {
                     displayStudentList();
                     break;
                 case 11:
-                    adminManagement.getAllEntities();
                     break;
                 case 12:
                     showMainMenu();
@@ -125,7 +120,7 @@ public class ManagementView {
                     displayStudentList();
                     break;
                 case 2:
-                    displayAllEntities(adminManagement.getAllEntities());
+                    displayStudentAndPoint();
                     break;
                 case 3:
                     findStudentById(students);
@@ -156,178 +151,6 @@ public class ManagementView {
             System.out.println(students.get(index));
         }
     }
-    public static void addPoint() {
-        System.out.println("Enter student code to add points: ");
-        String studentCode = scanner.nextLine().trim();
-
-        int indexOfStudent = findStudentIndex(adminManagement.getStudents(), studentCode);
-
-        if (indexOfStudent != -1) {
-            System.out.println("1. Maths");
-            System.out.println("2. Physical");
-            System.out.println("3. Chemistry");
-            int choice = scanner.nextByte();
-            switch (choice) {
-                case 1:
-                    addMathsPointsForStudent(adminManagement.getAllEntities(), adminManagement.getStudents().get(indexOfStudent));
-                    break;
-                case 2:
-                    addPhysicalPointsForStudent(adminManagement.getAllEntities(), adminManagement.getStudents().get(indexOfStudent));
-                    break;
-                case 3:
-                    addChemistryPointsForStudent(adminManagement.getAllEntities(), adminManagement.getStudents().get(indexOfStudent));
-                    break;
-                default:
-                    System.out.println("Invalid choice");
-                    break;
-            }
-        } else {
-            System.out.println("Student not found with code: " + studentCode);
-        }
-    }
-
-    private static void addMathsPointsForStudent(List<Object> objects, Student student) {
-        Maths maths = findMathsObject(objects, student.getStudentCode());
-        if (maths != null) {
-            System.out.println("Select the point to add:");
-            System.out.println("1. exercise points");
-            System.out.println("2. test marks");
-            System.out.println("3. practice Point");
-            System.out.println("4. midterm Score");
-            System.out.println("5. final Grade");
-            int mathschoice = scanner.nextInt();
-            switch (mathschoice) {
-                case 1:
-                    System.out.println("Enter exercise points: ");
-                    double newExercisePoint = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                    maths.setExercisePoints(newExercisePoint);
-                    break;
-                case 2:
-                    System.out.println("Enter test marks: ");
-                    double newTestMarks = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                    maths.setTestMarks(newTestMarks);
-                    break;
-                case 3:
-                    System.out.println("Enter practice Point: ");
-                    double newPracticePoint = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                    maths.setPracticePoint(newPracticePoint);
-                    break;
-                case 4:
-                    System.out.println("Enter midterm Score: ");
-                    double newMidTermScore = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                    maths.setMidtermScore(newMidTermScore);
-                    break;
-                case 5:
-                    System.out.println("Enter final Grade: ");
-                    double newFinalGrade = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                    maths.setFinalGrade(newFinalGrade);
-                    break;
-                default:
-                    System.out.println("choice again");
-                    break;
-            }
-
-            System.out.println("Maths points updated successfully.");
-        } else {
-            System.out.println("Invalid operation. Student has not registered for Maths.");
-        }
-    }
-
-    private static void addPhysicalPointsForStudent(List<Object> objects, Student student) {
-        Physical physical = findPhysicalObject(objects, student.getStudentCode());
-
-        if (physical != null) {
-            System.out.println("Select points to add: ");
-            System.out.println("1. exercise points");
-            System.out.println("2. test marks");
-            System.out.println("3. practice Point");
-            System.out.println("4. midterm Score");
-            System.out.println("5. final Grade");
-            int physicalchoice = scanner.nextInt();
-            switch (physicalchoice) {
-                case 1:
-                    System.out.println("Enter exercise points: ");
-                    double newExercisePoint = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                    physical.setExercisePoints(newExercisePoint);
-                    break;
-                case 2:
-                    System.out.println("Enter test marks: ");
-                    double newTestMarks = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                    physical.setTestMarks(newTestMarks);
-                    break;
-                case 3:
-                    System.out.println("Enter practice Point: ");
-                    double newPracticePoint = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                    physical.setPracticePoint(newPracticePoint);
-                    break;
-                case 4:
-                    System.out.println("Enter midterm Score: ");
-                    double newMidTermScore = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                    physical.setMidtermScore(newMidTermScore);
-                    break;
-                case 5:
-                    System.out.println("Enter final Grade: ");
-                    double newFinalGrade = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                    physical.setFinalGrade(newFinalGrade);
-                    break;
-                default:
-                    System.out.println("choice again");
-                    break;
-            }
-
-            System.out.println("Physical points updated successfully.");
-        } else {
-            System.out.println("Invalid operation. Student has not registered for Physical.");
-        }
-    }
-
-    private static void addChemistryPointsForStudent(List<Object> objects, Student student) {
-        Chemistry chemistry = findChemistryObject(objects, student.getStudentCode());
-
-        if (chemistry != null) {
-            System.out.println("Select points to add: ");
-            System.out.println("1. exercise points");
-            System.out.println("2. test marks");
-            System.out.println("3. practice Point");
-            System.out.println("4. midterm Score");
-            System.out.println("5. final Grade");
-            int chemistychoice = scanner.nextInt();
-            switch (chemistychoice) {
-                case 1:
-                    System.out.println("Enter exercise points: ");
-                    double newExercisePoint = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                    chemistry.setExercisePoints(newExercisePoint);
-                    break;
-                case 2:
-                    System.out.println("Enter test marks: ");
-                    double newTestMarks = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                    chemistry.setTestMarks(newTestMarks);
-                    break;
-                case 3:
-                    System.out.println("Enter practice Point: ");
-                    double newPracticePoint = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                    chemistry.setPracticePoint(newPracticePoint);
-                    break;
-                case 4:
-                    System.out.println("Enter midterm Score: ");
-                    double newMidTermScore = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                    chemistry.setMidtermScore(newMidTermScore);
-                    break;
-                case 5:
-                    System.out.println("Enter final Grade: ");
-                    double newFinalGrade = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                    chemistry.setFinalGrade(newFinalGrade);
-                    break;
-                default:
-                    System.out.println("choice again");
-                    break;
-            }
-
-            System.out.println("Chemistry points updated successfully.");
-        } else {
-            System.out.println("Invalid operation. Student has not registered for Chemistry.");
-        }
-    }
 
     public static void addNewStudent(){
         System.out.println("Enter student code: ");
@@ -346,6 +169,62 @@ public class ManagementView {
         adminManagement.addStudent(student);
         System.out.println("Done add");
     }
+    private static double enterSubjectData(String subject) {
+        System.out.println("Enter id for " + subject + ": ");
+        String id = scanner.nextLine();
+        System.out.println("Enter exercise points: ");
+        double exercisePoints = Double.parseDouble(RegexHandler.checkNumOfCredits());
+        System.out.println("Enter test marks: ");
+        double testMarks = Double.parseDouble(RegexHandler.checkNumOfCredits());
+        System.out.println("Enter practice Point: ");
+        double practicePoint = Double.parseDouble(RegexHandler.checkNumOfCredits());
+        System.out.println("Enter midterm Score: ");
+        double midtermScore = Double.parseDouble(RegexHandler.checkNumOfCredits());
+        System.out.println("Enter final Grade: ");
+        double finalGrade = Double.parseDouble(RegexHandler.checkNumOfCredits());
+
+        switch (subject) {
+            case "Maths":
+                Maths maths = new Maths(id, exercisePoints, testMarks, midtermScore, finalGrade, practicePoint);
+                return maths.getAvgPoint();
+            case "Physical":
+                Physical physical = new Physical(id, exercisePoints, testMarks, midtermScore, finalGrade, practicePoint);
+                return physical.getAvgPoint();
+            case "Chemistry":
+                Chemistry chemistry = new Chemistry(id, exercisePoints, testMarks, midtermScore, finalGrade, practicePoint);
+                return chemistry.getAvgPoint();
+            default:
+                System.out.println("Invalid subject");
+                return 0.0;
+        }
+    }
+
+    public static void addNewStudentPoint() {
+        System.out.println("Enter student code: ");
+        String code = RegexHandler.checkRegexStudentCode();
+        System.out.println("Enter first name: ");
+        String firstName = RegexHandler.checkRegexName();
+        System.out.println("Enter last name: ");
+        String lastName = RegexHandler.checkRegexName();
+        System.out.println("Enter gender: ");
+        String gender = RegexHandler.checkGender();
+        System.out.println("Enter day of birth");
+        String dayOfBirth = RegexHandler.checkRegexDate();
+        System.out.println("Enter phone");
+        String phone = RegexHandler.checkPhoneNumber();
+
+        double avgMaths = enterSubjectData("Maths");
+
+        double avgPhysical = enterSubjectData("Physical");
+
+        double avgChemistry = enterSubjectData("Chemistry");
+
+        Point1 point1 = new Point1(code, firstName, lastName, gender, dayOfBirth, phone, avgMaths, avgPhysical, avgChemistry);
+
+        adminManagement.addPoint(point1);
+        System.out.println("Done add");
+    }
+
 
     public static void editStudentById(List<Student> students) {
         System.out.println("Enter student code to edit:");
@@ -410,219 +289,24 @@ public class ManagementView {
                 System.out.println("No student found with ID: " + studentCodeToEdit);
         }
     }
-    private static void editPoint(List<Object> objects, List<Student> students) {
-        System.out.println("Enter student code to edit points:");
+    private static void editSubjectPointsByCode() {
+        System.out.println("Enter student code to edit subject points:");
         String studentCodeToEdit = scanner.nextLine().trim();
-        int indexOfStudentToEdit = findStudentIndex(students, studentCodeToEdit);
+        System.out.println("Enter subject (Maths, Physical, Chemistry): ");
+        String subject = scanner.nextLine();
+        System.out.println("Enter new exercise points: ");
+        double newExercisePoints = Double.parseDouble(scanner.nextLine());
+        System.out.println("Enter new test marks: ");
+        double newTestMarks = Double.parseDouble(scanner.nextLine());
+        System.out.println("Enter new practice point: ");
+        double newPracticePoint = Double.parseDouble(scanner.nextLine());
+        System.out.println("Enter new midterm score: ");
+        double newMidtermScore = Double.parseDouble(scanner.nextLine());
+        System.out.println("Enter new final grade: ");
+        double newFinalGrade = Double.parseDouble(scanner.nextLine());
 
-        if (indexOfStudentToEdit != -1) {
-            System.out.println("Information before editing: ");
-            System.out.println(objects.get(indexOfStudentToEdit));
-            System.out.println("Choose a subject to edit points:");
-            System.out.println("1. Maths");
-            System.out.println("2. Physical");
-            System.out.println("3. Chemistry");
-            int subjectChoice = scanner.nextInt();
-
-            switch (subjectChoice) {
-                case 1:
-                    editMathsPoints(objects, students.get(indexOfStudentToEdit));
-                    break;
-                case 2:
-                    editPhysicalPoints(objects, students.get(indexOfStudentToEdit));
-                    break;
-                case 3:
-                    editChemistryPoints(objects, students.get(indexOfStudentToEdit));
-                    break;
-                default:
-                    System.out.println("Invalid choice. No points edited.");
-                    break;
-            }
-        } else {
-            System.out.println("Student not found with code: " + studentCodeToEdit);
-        }
+        adminManagement.editSubjectPointsByStudentCode(studentCodeToEdit, subject, newExercisePoints, newTestMarks, newPracticePoint, newMidtermScore, newFinalGrade);
     }
-
-    private static void editMathsPoints(List<Object> objects, Student student) {
-        Maths maths = findMathsObject(objects, student.getStudentCode());
-
-        if (maths != null) {
-            System.out.println("Select the point to correct: ");
-            System.out.println("1. exercise points");
-            System.out.println("2. test marks");
-            System.out.println("3. practice Point");
-            System.out.println("4. midterm Score");
-            System.out.println("5. final Grade");
-            int mathschoice = scanner.nextInt();
-            switch (mathschoice){
-                case 1:
-                    System.out.println("Enter exercise points: ");
-                    double newExercisePoint = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                    maths.setExercisePoints(newExercisePoint);
-                    break;
-                case 2:
-                    System.out.println("Enter test marks: ");
-                    double newTestMarks = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                    maths.setTestMarks(newTestMarks);
-                    break;
-                case 3:
-                    System.out.println("Enter practice Point: ");
-                    double newPracticePoint = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                    maths.setPracticePoint(newPracticePoint);
-                    break;
-                case 4:
-                    System.out.println("Enter midterm Score: ");
-                    double newMidTermScore = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                    maths.setMidtermScore(newMidTermScore);
-                    break;
-                case 5:
-                    System.out.println("Enter final Grade: ");
-                    double newFinalGrade = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                    maths.setFinalGrade(newFinalGrade);
-                    break;
-                default:
-                    System.out.println("choice again");
-                    break;
-            }
-
-            System.out.println("Maths points updated successfully.");
-        } else {
-            System.out.println("Invalid operation. Student has not registered for Maths.");
-        }
-    }
-
-    private static void editPhysicalPoints(List<Object> objects, Student student) {
-        Physical physical = findPhysicalObject(objects, student.getStudentCode());
-
-        if (physical != null) {
-            System.out.println("Select the point to correct: ");
-            System.out.println("1. exercise points");
-            System.out.println("2. test marks");
-            System.out.println("3. practice Point");
-            System.out.println("4. midterm Score");
-            System.out.println("5. final Grade");
-            int physicalchoice = scanner.nextInt();
-            switch (physicalchoice){
-                case 1:
-                    System.out.println("Enter exercise points: ");
-                    double newExercisePoint = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                    physical.setExercisePoints(newExercisePoint);
-                    break;
-                case 2:
-                    System.out.println("Enter test marks: ");
-                    double newTestMarks = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                    physical.setTestMarks(newTestMarks);
-                    break;
-                case 3:
-                    System.out.println("Enter practice Point: ");
-                    double newPracticePoint = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                    physical.setPracticePoint(newPracticePoint);
-                    break;
-                case 4:
-                    System.out.println("Enter midterm Score: ");
-                    double newMidTermScore = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                    physical.setMidtermScore(newMidTermScore);
-                    break;
-                case 5:
-                    System.out.println("Enter final Grade: ");
-                    double newFinalGrade = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                    physical.setFinalGrade(newFinalGrade);
-                    break;
-                default:
-                    System.out.println("choice again");
-                    break;
-            }
-
-            System.out.println("Physical points updated successfully.");
-        } else {
-            System.out.println("Invalid operation. Student has not registered for Physical.");
-        }
-    }
-
-    private static void editChemistryPoints(List<Object> objects, Student student) {
-        Chemistry chemistry = findChemistryObject(objects, student.getStudentCode());
-
-        if (chemistry != null) {
-            System.out.println("Chọn điểm cần sửa: ");
-            System.out.println("1. exercise points");
-            System.out.println("2. test marks");
-            System.out.println("3. practice Point");
-            System.out.println("4. midterm Score");
-            System.out.println("5. final Grade");
-            int chemistychoice = scanner.nextInt();
-            switch (chemistychoice){
-                case 1:
-                    System.out.println("Enter exercise points: ");
-                    double newExercisePoint = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                    chemistry.setExercisePoints(newExercisePoint);
-                    break;
-                case 2:
-                    System.out.println("Enter test marks: ");
-                    double newTestMarks = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                    chemistry.setTestMarks(newTestMarks);
-                    break;
-                case 3:
-                    System.out.println("Enter practice Point: ");
-                    double newPracticePoint = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                    chemistry.setPracticePoint(newPracticePoint);
-                    break;
-                case 4:
-                    System.out.println("Enter midterm Score: ");
-                    double newMidTermScore = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                    chemistry.setMidtermScore(newMidTermScore);
-                    break;
-                case 5:
-                    System.out.println("Enter final Grade: ");
-                    double newFinalGrade = Double.parseDouble(RegexHandler.checkNumOfCredits());
-                    chemistry.setFinalGrade(newFinalGrade);
-                    break;
-                default:
-                    System.out.println("choice again");
-                    break;
-            }
-
-            System.out.println("Chemistry points updated successfully.");
-        } else {
-            System.out.println("Invalid operation. Student has not registered for Chemistry.");
-        }
-    }
-
-    private static int findStudentIndex(List<Student> students, String studentCode) {
-        for (int i = 0; i < students.size(); i++) {
-            if (students.get(i).getStudentCode().equals(studentCode)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    private static Maths findMathsObject(List<Object> objects, String studentCode) {
-        for (Object obj : objects) {
-            if (obj instanceof Maths && ((Maths) obj).getStudentCode().equals(studentCode)) {
-                return (Maths) obj;
-            }
-        }
-        return null;
-    }
-
-    private static Physical findPhysicalObject(List<Object> objects, String studentCode) {
-        for (Object obj : objects) {
-            if (obj instanceof Physical && ((Physical) obj).getStudentCode().equals(studentCode)) {
-                return (Physical) obj;
-            }
-        }
-        return null;
-    }
-
-    private static Chemistry findChemistryObject(List<Object> objects, String studentCode) {
-        for (Object obj : objects) {
-            if (obj instanceof Chemistry && ((Chemistry) obj).getStudentCode().equals(studentCode)) {
-                return (Chemistry) obj;
-            }
-        }
-        return null;
-    }
-
 
     public static void displayStudentList() {
         List<Student> students = adminManagement.getStudents();
@@ -631,10 +315,11 @@ public class ManagementView {
             System.out.println(student);
         }
     }
-    private static void displayAllEntities(List<Object> allEntities) {
-        System.out.println("List of All Entities:");
-        for (Object entity : allEntities) {
-            System.out.println(entity);
+    private static void displayStudentAndPoint() {
+        List<Point1> point1s = adminManagement.getPoint1s();
+        System.out.println("List Student and Point");
+        for (Point1 point1: point1s){
+            System.out.println(point1);
         }
     }
 }
