@@ -36,6 +36,9 @@ public class Point1 extends Student implements CheckRanking{
     public void setAvgChemistry(double avgChemistry) {
         this.avgChemistry = avgChemistry;
     }
+    public String covertToLine1(){
+        return getStudentCode() + ", " + getFirstName() + ", " + getLastName() + ", " + getGender() + ", " + getDayOfBirth() + ", " + getPhone() + ", " + getAvgAllSubject()+ ", " + ranking();
+    }
     @Override
     public double getAvgAllSubject() {
         return (getAvgChemistry() + getAvgMaths() + getAvgPhysical())/3;

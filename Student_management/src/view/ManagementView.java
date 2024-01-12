@@ -43,21 +43,22 @@ public class ManagementView {
     private static void showMenuAdmin() {
         while (true) {
             List<Student> students = adminManagement.getStudents();
-            System.out.println("Admin Management");
-            System.out.println("1. add new student");
-            System.out.println("2. add new subject");
-            System.out.println("3. display student");
-            System.out.println("4. display all");
-            System.out.println("5. edit student");
-            System.out.println("6. edit subject point");
-            System.out.println("7. delete student");
-            System.out.println("8. write to file");
-            System.out.println("9. read to file");
-            System.out.println("10. sort student name");
-            System.out.println("11. Back Main Menu");
-            System.out.print("your choice: ");
+            List<Point1> point1s = adminManagement.getPoint1s();
+            System.out.println("╔══════════════════════════════════════════════════════════════════════════════╗");
+            System.out.println("║                         MENU QUẢN LÝ SINH VIÊN                               ║");
+            System.out.println("╠══════════════════════════════════════════════════════════════════════════════╣");
+            System.out.println("║ Options:                                                                     ║");
+            System.out.println("║ ▶ 1.Thêm mới sinh viên              ▶ 6.Sửa điểm sinh viên                   ║");
+            System.out.println("║ ▶ 2.Thêm mới điểm sinh viên         ▶ 7.Xóa sinh viên ra khỏi danh sách      ║");
+            System.out.println("║ ▶ 3.Hiển thị danh sách sinh viên    ▶ 8.Viết vào file                        ║");
+            System.out.println("║ ▶ 4.Hiển thị danh sách điểm         ▶ 9.Đọc file                             ║");
+            System.out.println("║ ▶ 5.Sửa thông tin sinh viên         ▶ 10.Sắp xếp theo tên sinh viên          ║");
+            System.out.println("║ ▶ 6.Sửa điểm sinh viên              ▶ 11.Về menu chính                       ║");
+            System.out.println("║                                                                              ║");
+            System.out.println("║ ▶ Chon chức năng                                                             ║");
+            System.out.println("║                    MENU: @copyright: Quốc Phú                                ║");
+            System.out.println("╚══════════════════════════════════════════════════════════════════════════════╝");
             int choice = scanner.nextByte();
-
             scanner.nextLine();
             switch (choice){
                 case 1:
@@ -85,9 +86,11 @@ public class ManagementView {
                     break;
                 case 8:
                     csv.writeStudent(students);
+                    csv.writeAll(point1s);
                     break;
                 case 9:
                     csv.readStudent();
+                    csv.readAll();
                     break;
                 case 10:
                     adminManagement.sortStudentsByNameVietnamese();
@@ -112,6 +115,7 @@ public class ManagementView {
             System.out.println("3. find student");
             System.out.println("4. Back Main Menu");
             int choice = scanner.nextByte();
+            scanner.nextLine();
             switch (choice){
                 case 1:
                     displayStudentList();
@@ -134,7 +138,7 @@ public class ManagementView {
 
     private static void findStudentById(List<Point1> point1s) {
         System.out.println("Enter student code to find:");
-        String codeStudent = scanner.nextLine().trim();
+        String codeStudent = scanner.nextLine();
         int index = -1;
         for (int i = 0; i < point1s.size(); i++) {
             if (point1s.get(i).getStudentCode().equals(codeStudent)) {
@@ -145,6 +149,8 @@ public class ManagementView {
         if (index != -1) {
             System.out.println("Information found: ");
             System.out.println(point1s.get(index));
+        } else {
+            System.out.println("Student with code " + codeStudent + " not found.");
         }
     }
 
